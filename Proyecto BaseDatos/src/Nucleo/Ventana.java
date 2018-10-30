@@ -125,7 +125,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void mTurnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mTurnosActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://www.youtube.com"));
+            Desktop.getDesktop().browse(new URI("https://youtu.be/tOue9nW6tNg"));
         } catch (Exception ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
