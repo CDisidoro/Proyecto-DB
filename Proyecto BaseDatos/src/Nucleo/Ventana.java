@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import admin.*;
 /**
  *
  * @author Camilo D'isidoro
@@ -68,6 +69,11 @@ public class Ventana extends javax.swing.JFrame {
         cParticular.setText("Atencion Particular");
 
         admin.setText("Administracion");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,6 +130,11 @@ public class Ventana extends javax.swing.JFrame {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_mTurnosActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        dispose();
+        new Login();
+    }//GEN-LAST:event_adminActionPerformed
 
     /**
      * @param args the command line arguments
