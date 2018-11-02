@@ -32,26 +32,21 @@
                       <Component id="jLabel1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="mTurnos" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="cGeneral" min="-2" pref="160" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cParticular" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="aTurnos" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="admin" min="-2" pref="145" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel2" pref="513" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel2" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="mTurnos" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="admin" max="32767" attributes="0"/>
+                          <Component id="aTurnos" pref="164" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cGeneral" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -67,14 +62,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="mTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="aTurnos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="admin" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cGeneral" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cParticular" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="admin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,7 +78,7 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Simulador de Turnos"/>
+        <Property name="text" type="java.lang.String" value="Simoturn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -113,13 +105,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="cGeneral">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Atencion General"/>
+        <Property name="text" type="java.lang.String" value="Caja"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="cParticular">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Atencion Particular"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cGeneralActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="admin">
       <Properties>
