@@ -125,6 +125,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void mTurnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mTurnosActionPerformed
         JOptionPane.showMessageDialog(null, "Se abrirá una ventana externa para el despliegue de turnos", "Ventana Externa", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Recordar cambiar el enlace una vez el despliegue de turnos esté totalmente desarrollado", "Fase Beta", JOptionPane.INFORMATION_MESSAGE);
         try {
             Desktop.getDesktop().browse(new URI("https://youtu.be/tOue9nW6tNg"));
         } catch (Exception ex) {

@@ -57,17 +57,14 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="crear" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="buscar" max="32767" attributes="0"/>
-                          <Component id="crear" max="32767" attributes="0"/>
+                          <Component id="regresar" max="32767" attributes="0"/>
+                          <Component id="modificar" pref="93" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="modificar" min="-2" pref="93" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="regresar" min="-2" max="-2" attributes="0"/>
-                          <Component id="eliminar" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="eliminar" pref="77" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -96,10 +93,7 @@
                   <Component id="eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="regresar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="regresar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -150,11 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="buscar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="regresar">
       <Properties>

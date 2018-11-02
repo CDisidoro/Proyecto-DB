@@ -15,11 +15,12 @@ import javax.swing.JOptionPane;
  * @author Camilo D'isidoro
  */
 public class Caja extends javax.swing.JFrame {
-    int tipoA=0;
+
+    int tipoA = 0;
     Calendar fecha = Calendar.getInstance();
     int mes = fecha.get(Calendar.MONTH);
     PostgreSQL conector = new PostgreSQL();
-    String sqlCliente = "SELECT \"Usuario\".documento,\"Turno\".codigo FROM \"Usuario\",\"Turno\" WHERE \"Turno\".estado=0 AND \"Usuario\".codigo = \"Turno\".codigo_usuario AND \"Turno\".codigo_atencion = "+tipoA+"ORDER BY \"Turno\".codigo;";
+    String sqlCliente = "SELECT \"Usuario\".documento,\"Turno\".codigo FROM \"Usuario\",\"Turno\" WHERE \"Turno\".estado=0 AND \"Usuario\".codigo = \"Turno\".codigo_usuario AND \"Turno\".codigo_atencion = " + tipoA + "ORDER BY \"Turno\".codigo;";
     ResultSet resultadoCliente = conector.consultar(sqlCliente);
 
     /**
@@ -44,10 +45,8 @@ public class Caja extends javax.swing.JFrame {
             if (resultadoCliente.next()) {
                 documentoCl.setText(resultadoCliente.getString("documento"));
                 numeroTurn.setText(resultadoCliente.getString("codigo"));
-                if (resultadoCliente.isLast()) {
-                    actualizarConsulta();
-                    JOptionPane.showMessageDialog(null, "Se actualizará el registro de turnos, puesto que se han atendido todos desde la última consulta", "Actualizando...", JOptionPane.INFORMATION_MESSAGE);
-                }
+            } else {
+                actualizarConsulta();
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -194,20 +193,25 @@ public class Caja extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null, "Código desarrollado por:\nCamilo Andrés D'isidoro Flechas\nDairo Estiben Beltrán Martínez\n Ronald Jefrey Moreno Mora\nLuis Miguel Morales Sandoval", "Creadores", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String sql = "UPDATE \"Turno\" SET estado=1 WHERE codigo='" +Integer.parseInt(numeroTurn.getText())+"';";
-        conector.actualizar(sql);
-        obtenerCliente();
+        if (tipoA == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de atención", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String sql = "UPDATE \"Turno\" SET estado=1 WHERE codigo='" + Integer.parseInt(numeroTurn.getText()) + "';";
+            conector.actualizar(sql);
+            obtenerCliente();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tipoAtenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoAtenActionPerformed
         tipoA = tipoAten.getSelectedIndex();
         sqlCliente = "SELECT \"Usuario\".documento,\"Turno\".codigo"
                 + " FROM \"Usuario\",\"Turno\" "
-                + "WHERE \"Turno\".estado=0 AND \"Usuario\".codigo = \"Turno\".codigo_usuario AND \"Turno\".codigo_atencion = "+tipoA+""
+                + "WHERE \"Turno\".estado=0 AND \"Usuario\".codigo = \"Turno\".codigo_usuario AND \"Turno\".codigo_atencion = " + tipoA + ""
                 + "ORDER BY \"Turno\".codigo;";
         actualizarConsulta();
         obtenerCliente();

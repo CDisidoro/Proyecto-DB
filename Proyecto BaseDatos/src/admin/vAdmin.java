@@ -6,6 +6,7 @@
 package admin;
 
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Camilo D'isidoro
@@ -41,11 +42,12 @@ public class vAdmin extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -85,10 +87,12 @@ public class vAdmin extends javax.swing.JFrame {
         jMenu5.add(jMenuItem7);
 
         jMenuItem9.setText("Tipo de Turno");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
-
-        jMenuItem10.setText("Estado de Atencion");
-        jMenu5.add(jMenuItem10);
 
         jMenuBar1.add(jMenu5);
 
@@ -103,10 +107,36 @@ public class vAdmin extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Atenciones Generales");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Atenciones Preferenciales");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem10.setText("Cajas");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem11.setText("Tipos de Turno");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
 
@@ -165,10 +195,13 @@ public class vAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        String sql="SELECT *  FROM \"Usuario\" ORDER BY codigo";
+        new Consultas(sql,new Object[]{"Codigo","Tipo Documento","N° Documento","Nombres","Apellidos"},1).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JOptionPane.showMessageDialog(null, "Código desarrollado por:\nCamilo Andrés D'isidoro Flechas\nDairo Estiben Beltrán Martínez\n Ronald Jefrey Moreno Mora\nLuis Miguel Morales Sandoval", "Creadores", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -176,6 +209,35 @@ public class vAdmin extends javax.swing.JFrame {
         dispose();
         new Caja();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        dispose();
+        new Turno();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        dispose();
+        String sql="SELECT * FROM \"Caja\" ORDER BY codigo";
+        new Consultas(sql,new Object[]{"Codigo","Descripcion"},3).setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        dispose();
+        String sql="SELECT * FROM \"Tipo\" ORDER BY codigo";
+        new Consultas(sql,new Object[]{"Codigo","Descripcion"},3).setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        dispose();
+        String sql="SELECT \"Turno\".codigo,\"Usuario\".nombres,\"Usuario\".apellidos,\"Caja\".descripcion,\"Tipo\".descripcion,\"Turno\".estado,\"Turno\".fecha_creacion  FROM \"Tipo\",\"Turno\",\"Caja\",\"Usuario\"   WHERE \"Turno\".codigo_usuario = \"Usuario\".codigo AND \"Turno\".codigo_atencion = \"Tipo\".codigo AND \"Turno\".codigo_caja = \"Caja\".codigo AND \"Caja\".descripcion = \'Preferencial\' ORDER BY codigo";
+        new Consultas(sql,new Object[]{"Codigo","Nombres","Apellidos","Caja","Atencion","Estado","Fecha"},2).setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+        String sql="SELECT \"Turno\".codigo,\"Usuario\".nombres,\"Usuario\".apellidos,\"Caja\".descripcion,\"Tipo\".descripcion,\"Turno\".estado,\"Turno\".fecha_creacion  FROM \"Tipo\",\"Turno\",\"Caja\",\"Usuario\"   WHERE \"Turno\".codigo_usuario = \"Usuario\".codigo AND \"Turno\".codigo_atencion = \"Tipo\".codigo AND \"Turno\".codigo_caja = \"Caja\".codigo AND \"Caja\".descripcion = \'General\' ORDER BY codigo";
+        new Consultas(sql,new Object[]{"Codigo","Nombres","Apellidos","Caja","Atencion","Estado","Fecha"},2).setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,6 +287,7 @@ public class vAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

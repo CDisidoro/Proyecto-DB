@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author Camilo D'isidoro
  */
-public class Caja extends javax.swing.JFrame {
+public class Turno extends javax.swing.JFrame {
 
     PostgreSQL conector = new PostgreSQL();
 
     /**
      * Creates new form Caja
      */
-    public Caja() {
+    public Turno() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -56,11 +56,12 @@ public class Caja extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Control de Informacion de Cajas");
+        jLabel1.setText("Control de Informacion de Tipos de Turno");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Código:");
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Descripción:");
 
         crear.setText("Crear");
@@ -97,18 +98,18 @@ public class Caja extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(crear, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(regresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,9 +155,9 @@ public class Caja extends javax.swing.JFrame {
         } else if ("".equals(descripcion.getText())) {
             JOptionPane.showMessageDialog(null, "Guardado Fallido\nComplete todos los campos", "Guardado Fallido", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "INSERT INTO \"Caja\" (codigo,descripcion) VALUES (" + codigo.getText() + ",\'" + descripcion.getText() + "\')";
+            String sql = "INSERT INTO \"Tipo\" (codigo,descripcion) VALUES (" + codigo.getText() + ",\'" + descripcion.getText() + "\')";
             if (conector.actualizar(sql) == 1) {
-            JOptionPane.showMessageDialog(null, "Guardado Exitoso\nSe ha creado la nueva Caja", "Guardado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Guardado Exitoso\nSe ha creado el nuevo tipo de turno", "Guardado Exitoso", JOptionPane.INFORMATION_MESSAGE);
             } else {
             JOptionPane.showMessageDialog(null, "Guardado Fallido\nHa ocurrido un error guardando la información", "Guardado Fallido", JOptionPane.ERROR_MESSAGE);
             }
@@ -169,9 +170,9 @@ public class Caja extends javax.swing.JFrame {
         } else if ("".equals(descripcion.getText())) {
             JOptionPane.showMessageDialog(null, "Actualizacion Fallida\nComplete todos los campos", "Actualizacion Fallido", JOptionPane.ERROR_MESSAGE);
         } else {
-            String sql = "UPDATE \"Caja\" descripcion SET descripcion=\'" + descripcion.getText() + "\'WHERE codigo=" + codigo.getText() + ";";
+            String sql = "UPDATE \"Tipo\" descripcion SET descripcion=\'" + descripcion.getText() + "\'WHERE codigo=" + codigo.getText() + ";";
             if (conector.actualizar(sql) == 1) {
-            JOptionPane.showMessageDialog(null, "Actualizacion Exitosa\nSe ha actualizado la caja", "Actualizacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Actualizacion Exitosa\nSe ha actualizado el tipo de turno", "Actualizacion Exitosa", JOptionPane.INFORMATION_MESSAGE);
             } else {
             JOptionPane.showMessageDialog(null, "Actualizacion Fallida\nHa ocurrido un error actualizando la información", "Actualizacion Fallida", JOptionPane.ERROR_MESSAGE);
             }
@@ -182,9 +183,9 @@ public class Caja extends javax.swing.JFrame {
         if (Validador.numeros(codigo.getText()) == 0) {
             JOptionPane.showMessageDialog(null, "Borrado Fallida\nAsegurese de digitar solo numeros en el campo Codigo", "Borrado Fallido", JOptionPane.ERROR_MESSAGE);
         }else {
-            String sql = "DELETE FROM \"Caja\" WHERE codigo=" + codigo.getText();
+            String sql = "DELETE FROM \"Tipo\" WHERE codigo=" + codigo.getText();
             if (conector.actualizar(sql) == 1) {
-            JOptionPane.showMessageDialog(null, "Borrado Exitoso\nSe ha eliminado la caja", "Borrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Borrado Exitoso\nSe ha eliminado el tipo de turno", "Borrado Exitoso", JOptionPane.INFORMATION_MESSAGE);
             } else {
             JOptionPane.showMessageDialog(null, "Borrado Fallido\nHa ocurrido un error actualizando la información", "Borrado Fallido", JOptionPane.ERROR_MESSAGE);
             }
@@ -208,20 +209,21 @@ public class Caja extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Caja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Turno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Caja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Turno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Caja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Turno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Caja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Turno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caja().setVisible(true);
+                new Turno().setVisible(true);
             }
         });
     }
